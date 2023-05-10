@@ -1,4 +1,4 @@
-#!/usr/bin/env
+#!/usr/bin/python3
 # Author: pretelogic
 # uppercase(str): prints a string in uppercase
 def uppercase(str):
@@ -7,3 +7,4 @@ def uppercase(str):
             c = chr(ord(c) - 32)
         print("{}".format(c), end="")
     print()
+

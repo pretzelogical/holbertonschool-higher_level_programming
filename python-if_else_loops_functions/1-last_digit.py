@@ -3,10 +3,10 @@ import random
 number = random.randint(-10000, 10000)
 if number < 0:
     last = number % -10
-    out = f"The last digit of {number} is {last}"
+    out = f"Last digit of {number} is {last}"
 elif number > 0:
     last = number % 10
-    out = f"The last digit of {number} is {number % 10}"
+    out = f"Last digit of {number} is {number % 10}"
 
 if last == 0:
     out += " and is 0"
