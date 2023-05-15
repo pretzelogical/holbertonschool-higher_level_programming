@@ -5,7 +5,7 @@ def normalise_tuple(tuple=()):
     and if so returns a normalised copy"""
     if len(tuple) < 2:
         return (tuple[0], 0)
-    return(tuple)
+    return tuple
 
 def add_tuple(tuple_a=(), tuple_b=()):
     """Adds tuple_a & tuple_b only using the first
