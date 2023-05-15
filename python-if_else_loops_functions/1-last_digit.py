@@ -6,7 +6,7 @@ if number < 0:
     out = f"Last digit of {number} is {last}"
 elif number > 0:
     last = number % 10
-    out = f"Last digit of {number} is {number % 10}"
+    out = f"Last digit of {number} is {last}"
 
 if last == 0:
     out += " and is 0"
