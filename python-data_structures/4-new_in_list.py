@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+
 def new_in_list(my_list, idx, element):
     """Copies list to a new list and replaces the
     element at idx with element

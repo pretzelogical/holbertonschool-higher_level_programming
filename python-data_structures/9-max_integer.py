@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+
 def quick_sort(arr):
     """Quick sort"""
     if len(arr) <= 1:

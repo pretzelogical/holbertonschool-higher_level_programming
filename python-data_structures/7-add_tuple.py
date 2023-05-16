@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+
 def normalise_tuple(tuple=()):
     """Checks if tuple is smaller than two (or empty)
     and if so returns a normalised copy"""
