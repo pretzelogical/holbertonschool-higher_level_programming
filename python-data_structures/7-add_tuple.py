@@ -7,6 +7,7 @@ def normalise_tuple(tuple=()):
         return (tuple[0], 0)
     return tuple
 
+
 def add_tuple(tuple_a=(), tuple_b=()):
     """Adds tuple_a & tuple_b only using the first
     two elements.
