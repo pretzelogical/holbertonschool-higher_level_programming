@@ -13,3 +13,6 @@ def add_tuple(tuple_a=(), tuple_b=()):
     two elements.
     If tuple is smaller than 2, 0 will be substitued
     for the missing integer"""
+    a = normalise_tuple(tuple_a)
+    b = normalise_tuple(tuple_b)
+    return (a[0] + b[0], a[1] + b[1])
