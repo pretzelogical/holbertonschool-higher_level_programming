@@ -14,5 +14,7 @@ def quick_sort(arr):
 
 def max_integer(my_list=[]):
     """Finds the biggest integer of a list"""
+    if len(my_list) is 0:
+        return None
     sorted = quick_sort(my_list)
     return sorted[-1]

@@ -4,8 +4,10 @@
 def normalise_tuple(tuple=()):
     """Checks if tuple is smaller than two (or empty)
     and if so returns a normalised copy"""
-    if len(tuple) < 2:
+    if len(tuple) is 1:
         return (tuple[0], 0)
+    if len(tuple) is 0:
+        return(0, 0)
     return tuple
 
 
