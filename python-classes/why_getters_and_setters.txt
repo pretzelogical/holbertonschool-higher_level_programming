@@ -1,0 +1,25 @@
+We want to hold a value and make sure it follows some rules (example: no bigger than 100 no smaller than 0)
+we could solve this problem by constantly checking if the value is under these conditions but that doesnt make much programatic sense
+if via a traditional function it does work but it's a bit messy since you have to call that function everytime you want to access a private variable
+getters and setters fix this by being able to have logic written like a functin but can be accessed and set as if it was a normal variable outside of the class definition
+This allows us to make seamlessly a variable that is always no bigger the 100 and no smaller than 0 like so
+```
+class Test:
+    __init__(self, test):
+        self.__test = test
+
+    @property
+    def test(self):
+        return self.__test
+
+    @test.setter
+    def test(self, val):
+        if val > 100:
+            raise TypeError("val cannot be bigger than 100")
+            val = 100
+        elif val < 0:
+            raise TypeError("val cannot be small than 0")
+            val = 0
+        self.__test = val
+
+```
