@@ -75,7 +75,8 @@ class Square:
         """Prints the square
         size ** 2 = amount of #
         position[0] = amount of ' ' before #
-        position[1] = amount of '\n' before square"""
+        position[1] = amount of '\n' before square
+        """
         print("\n" * self.__position[1])
         for i in range(self.__size):
             print(" " * self.__position[0], end="")
