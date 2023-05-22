@@ -6,7 +6,7 @@ class Square:
     """Square class that does not allow a value that is not an
     integer or less than zero to be assigned to __size"""
     def __init__(self, size=0):
-        """Initalizes the the __size variable checking if it is an
+        """Initalizes the __size variable checking if it is an
         integer and less than zero
 
         Args:
