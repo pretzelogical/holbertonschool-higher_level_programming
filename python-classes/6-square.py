@@ -4,7 +4,8 @@
 
 class Square:
     """Square class that does not allow a value that is not an
-    integer or less than zero to be assigned to __size"""
+    integer or less than zero to be assigned to __size
+    """
 
     def __init__(self, size=0, position=(0, 0)):
         """Initializes the private size and position variables
@@ -65,13 +66,13 @@ class Square:
         if ((type(value[0]) is not int
                 and type(value[1]) is not int)
                 or (type(value[0]) < 0
-                and type(value[1]) < 0)):
+                    and type(value[1]) < 0)):
             raise TypeError("position must be a tuple of 2 positive integers")
 
         self.__position = value
 
     def my_print(self):
-        """Prints the square 
+        """Prints the square
         size ** 2 = amount of #
         position[0] = amount of ' ' before #
         position[1] = amount of '\n' before square"""
