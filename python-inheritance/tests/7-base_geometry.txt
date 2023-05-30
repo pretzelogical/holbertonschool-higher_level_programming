@@ -1,0 +1,36 @@
+Test import
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+
+SUCCESS CASES:
+
+Test int greater than 0 in integer_validator:
+    >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+    >>> geo = BaseGeometry()
+    >>> geo.integer_validator("width", 89)
+    >>> geo.integer_validator("height", 90)
+
+FAIL CASES:
+
+Test incorrect type in integer_validator:
+    >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+    >>> geo = BaseGeometry()
+    >>> geo.integer_validator("width", 0.3)
+    Traceback (most recent call last):
+    ...
+    TypeError: width must be an integer
+    >>> geo.integer_validator("height", (90,))
+    Traceback (most recent call last):
+    ...
+    TypeError: height must be an integer
+
+Test int less than zero in integer_validator:
+    >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
+    >>> geo = BaseGeometry()
+    >>> geo.integer_validator("width", 0)
+    Traceback (most recent call last):
+    ...
+    ValueError: width must be greater than 0
+    >>> geo.integer_validator("height", -1337)
+    Traceback (most recent call last):
+    ...
+    ValueError: height must be greater than 0

@@ -3,6 +3,7 @@
 inherited from another class of the specified class
 """
 
+
 def is_kind_of_class(obj, a_class):
     """Determines if obj is an instance or inherited from
     a_class

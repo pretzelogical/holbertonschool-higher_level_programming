@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Custom list class"""
 
+
 class MyList(list):
     """Custom list class
 
