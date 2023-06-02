@@ -29,40 +29,72 @@ class Rectangle(Base):
     # getters and setters
     @property
     def x(self):
-        """Get the private x attribute"""
+        """Get the private x attribute.
+
+        Returns:
+            int: private x attribute.
+        """
         return self.__x
 
     @x.setter
     def x(self, value):
-        """Set the private x attribute"""
+        """Set the private x attribute.
+
+        Args:
+            value (int): value to set the private x attribute.
+        """
         self.__x = value
 
     @property
     def y(self):
-        """Get the private y attribute"""
+        """Get the private y attribute.
+
+        Returns:
+            int: private y attribute.
+        """
         return self.__y
 
     @y.setter
     def y(self, value):
-        """Set the private y attribute"""
+        """Set the private y attribute.
+
+        Args:
+            value (int): value to set the private y attribute.
+        """
         self.__y = value
 
     @property
     def width(self):
-        """Get the private width attribute"""
+        """Get the private width attribute.
+
+        Returns:
+            int: private width attribute.
+        """
         return self.__width
 
     @width.setter
     def width(self, value):
-        """Set the private width attribute"""
+        """Set the private width attribute.
+
+        Args:
+            value (int): value to set the private width attribute.
+        """
         self.__width = value
 
     @property
     def height(self):
-        """Get the private height attribute"""
+        """Get the private height attribute.
+
+        Returns:
+            int: private height attribute.
+        """
         return self.__height
 
     @height.setter
     def height(self, value):
-        """Set the private height attribute"""
+        """Set the private height attribute.
+
+        Args:
+            value (int): value to set the private height attribute.
+        """
         self.__height = value
