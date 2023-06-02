@@ -1,8 +1,8 @@
 #!/usr/bin/python3
-from models.base import Base
 """Module for a class that represents a Rectangle.
 Inherits from base.py
 """
+from models.base import Base
 
 
 class Rectangle(Base):
