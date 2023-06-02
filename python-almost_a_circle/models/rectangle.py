@@ -25,8 +25,40 @@ class Rectangle(Base):
         super().__init__(id)
         self.__width = width
         self.__height = height
-        self.x = x
+        self.__x = x
         self.__y = y
+
+    @staticmethod
+    def input_validator(name, value):
+        """Validates value according to name string
+
+        Args:
+            name (string): name of attribute to validate for
+            value (int): integer to validate for
+
+        Raises:
+            ValueError: width/height was below or 0
+            ValueError: x/y was below 0
+
+        Returns:
+            int: if validation successful the value,
+            else nothing
+        """
+        if type(value) is not int:
+            raise TypeError(f"{name} must be an integer")
+        if (name == "width" or
+                name == "height"):
+            if not value > 0:
+                raise ValueError(f"{name} must be > 0")
+            else:
+                return value
+        elif (name == "x" or
+                name == "y"):
+            if not value >= 0:
+                raise ValueError(f"{name} must be >= 0")
+            else:
+                return value
+        return
 
     # getters and setters
     @property
@@ -45,7 +77,7 @@ class Rectangle(Base):
         Args:
             value (int): value to set the private x attribute.
         """
-        self.__x = value
+        self.__x = self.input_validator("x", value)
 
     @property
     def y(self):
@@ -63,7 +95,7 @@ class Rectangle(Base):
         Args:
             value (int): value to set the private y attribute.
         """
-        self.__y = value
+        self.__y = self.input_validator("y", value)
 
     @property
     def width(self):
@@ -81,7 +113,7 @@ class Rectangle(Base):
         Args:
             value (int): value to set the private width attribute.
         """
-        self.__width = value
+        self.__width = self.input_validator("width", value)
 
     @property
     def height(self):
@@ -99,4 +131,4 @@ class Rectangle(Base):
         Args:
             value (int): value to set the private height attribute.
         """
-        self.__height = value
+        self.__height = self.input_validator("height", value)

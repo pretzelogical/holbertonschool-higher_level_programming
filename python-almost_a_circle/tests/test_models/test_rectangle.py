@@ -11,10 +11,10 @@ class TestRectangle(unittest.TestCase):
 
     def test_create_instance_no_id(self):
         """Test Rectangle instance creation with no id"""
-        r0 = Rectangle(0, 1)
+        r0 = Rectangle(10, 15)
         self.assertEqual(r0.id, 2)
-        self.assertEqual(r0.width, 0)
-        self.assertEqual(r0.height, 1)
+        self.assertEqual(r0.width, 10)
+        self.assertEqual(r0.height, 15)
         self.assertEqual(Rectangle._Base__nb_objects, 2)  # type: ignore
         r1 = Rectangle(3, 2, 10, 15)
         self.assertEqual(r1.width, 3)
@@ -25,7 +25,11 @@ class TestRectangle(unittest.TestCase):
 
     def test_create_instance_with_id(self):
         """Test Rectangle instance creation with id"""
-        r = Rectangle(10, 10, id=1337)
+        r = Rectangle(10, 10, 3, 4, 1337)
         self.assertEqual(r.width, 10)
         self.assertEqual(r.height, 10)
+        self.assertEqual(r.x, 3)
+        self.assertEqual(r.y, 4)
         self.assertEqual(r.id, 1337)
+        self.assertEqual(Rectangle._Base__nb_objects, 3)  # type: ignore
+
