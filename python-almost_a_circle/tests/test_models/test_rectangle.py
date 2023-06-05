@@ -1,5 +1,8 @@
 #!/usr/bin/python3
+from io import StringIO
 import unittest
+import sys
+from unittest import mock
 from models.rectangle import Rectangle
 """Unit test for class Rectangle
 NOTE: 'type: ignore' comment is used to ignore errors in vscode
@@ -33,3 +36,52 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r.id, 1337)
         self.assertEqual(Rectangle._Base__nb_objects, 3)  # type: ignore
 
+    def test_getting_and_setting(self):
+        """Test getter and setter methods"""
+        r = Rectangle(10, 10, 3, 4, 1337)
+        self.assertEqual(r.width, 10)
+        self.assertEqual(r.height, 10)
+        self.assertEqual(r.x, 3)
+        self.assertEqual(r.y, 4)
+        self.assertEqual(r.id, 1337)
+        r.width = 20
+        r.height = 30
+        r.x = 40
+        r.y = 50
+        self.assertEqual(r.width, 20)
+        self.assertEqual(r.height, 30)
+        self.assertEqual(r.x, 40)
+        self.assertEqual(r.y, 50)
+
+    def test_area(self):
+        """Test area method"""
+        r = Rectangle(10, 10, 3, 4, 1337)
+        self.assertEqual(r.area(), 100)
+        r.width = 20
+        r.height = 30
+        self.assertEqual(r.area(), 600)
+
+    def test_display(self):
+        """Test display method"""
+        r = Rectangle(3, 3)
+        with mock.patch('sys.stdout', new=StringIO()) as fake_out:
+            r.display()
+            self.assertEqual(fake_out.getvalue(), "###\n###\n###\n")
+        r = Rectangle(3, 3, 1, 1)
+        with mock.patch('sys.stdout', new=StringIO()) as fake_out:
+            r.display()
+            self.assertEqual(fake_out.getvalue(), "\n ###\n ###\n ###\n")
+
+    def test_error_raise(self):
+        """Test conditions for error raising"""
+        """Test incorrect type"""
+        self.assertRaises(TypeError, Rectangle, 10, "10")
+        self.assertRaises(TypeError, Rectangle, 10, 10, "str", 30)
+        """Test incorrect value"""
+        self.assertRaises(ValueError, Rectangle, 10, 0, 10, 20)
+        self.assertRaises(ValueError, Rectangle, 10, 10, 0, -10)
+
+    def test_str(self):
+        """Test __str__ of rectangle"""
+        r = Rectangle(3, 3, 9, 10, 9000)
+        self.assertEqual(str(r), '[Rectangle] (9000) 9/10 - 3/3')

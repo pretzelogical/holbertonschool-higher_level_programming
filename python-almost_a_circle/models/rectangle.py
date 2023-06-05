@@ -16,17 +16,17 @@ class Rectangle(Base):
         """Initializes a Rectangle instance.
 
         Args:
-            width (int): Width of the rectangle
-            height (int): Height of the rectangle
-            x (int): X coordinate of the rectangle
-            y (int): Y coordinate of the rectangle
+            width (int): Width of the rectangle. Must be int over 0
+            height (int): Height of the rectangle. Must be int over 0
+            x (int): X coordinate of the rectangle. Must be non-negative int
+            y (int): Y coordinate of the rectangle. Must be non-negative int
             id (int): Id of the rectangle
         """
         super().__init__(id)
-        self.__width = width
-        self.__height = height
-        self.__x = x
-        self.__y = y
+        self.width = width
+        self.height = height
+        self.x = x
+        self.y = y
 
     @staticmethod
     def input_validator(name, value):
@@ -44,7 +44,7 @@ class Rectangle(Base):
             int: if validation successful the value,
             else nothing
         """
-        if type(value) is not int:
+        if type(value) != int:
             raise TypeError(f"{name} must be an integer")
         if (name == "width" or
                 name == "height"):
@@ -132,3 +132,27 @@ class Rectangle(Base):
             value (int): value to set the private height attribute.
         """
         self.__height = self.input_validator("height", value)
+
+    # methods
+    def area(self):
+        """Returns the area of the rectangle.
+
+        Returns:
+            int: area of the rectangle
+        """
+        return self.__width * self.__height
+
+    def display(self):
+        """Prints the rectangle in #'s to stdout."""
+        if self.__width == 0 or self.__height == 0:
+            return
+        for i in range(self.__y):
+            print()
+        for i in range(self.__height):
+            print(" " * self.__x, end="")
+            print("#" * self.__width)
+
+    def __str__(self):
+        """Returns a string representation of the rectangle."""
+        return (f"[Rectangle] ({self.id}) {self.x}/{self.y} "
+                + f"- {self.width}/{self.height}")
