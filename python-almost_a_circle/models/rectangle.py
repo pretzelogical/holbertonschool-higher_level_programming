@@ -159,10 +159,21 @@ class Rectangle(Base):
         keys = ["id", "width", "height", "x", "y"]
         if not args:
             for key, value in kwargs.items():
-                self.__setattr__(key, value)
+                if key in keys:
+                    self.__setattr__(key, value)
         else:
             for idx, elem in enumerate(args):
                 self.__setattr__(keys[idx], elem)
+
+    def to_dictionary(self):
+        """Returns a dictionary representation of the Rectangle."""
+        return {
+            "id": self.id,
+            "width": self.width,
+            "height": self.height,
+            "x": self.x,
+            "y": self.y
+        }
 
     def __str__(self):
         """Returns a string representation of the rectangle."""
