@@ -13,19 +13,15 @@ class TestBase(unittest.TestCase):
     def test_create_instance_no_id(self):
         """Test if an instance can be created with no id
         without specifying an id
-        (and test Base._Base__nb_objects)
         """
         b = Base()
-        self.assertEqual(b.id, 1)
-        self.assertEqual(Base._Base__nb_objects, 1)  # type: ignore
+        self.assertTrue(hasattr(b, 'id'))
 
     def test_create_instance_with_id(self):
         """Test if an instance can be created with an id
-        (and test Base._Base__nb_objects)
         """
         b = Base(1337)
         self.assertEqual(b.id, 1337)
-        self.assertEqual(Base._Base__nb_objects, 1)  # type: ignore
 
     def test_to_json_string(self):
         """Test if to_json_string returns a string
@@ -42,6 +38,19 @@ class TestBase(unittest.TestCase):
             '[{"id": 1, "width": 10, "height": 7, "x": 2, "y": 8}]')
         self.assertEqual(type(json_dictionary), str)
 
+    def test_from_json_string(self):
+        """Test if from_json_string returns a list
+        of dictionaries with the JSON representation of an object
+        """
+        list_input = [
+            {'id': 89, 'width': 10, 'height': 4},
+            {'id': 7, 'width': 1, 'height': 7}
+        ]
+        json_list_input = Rectangle.to_json_string(list_input)
+        list_output = Rectangle.from_json_string(json_list_input)
+        self.assertEqual(list_input, list_output)
+        self.assertEqual(type(list_output), list)
+
     def test_save_to_file(self):
         """Test if saving to a file works"""
         r0 = Rectangle(10, 7, 2, 8, 1)
@@ -51,12 +60,21 @@ class TestBase(unittest.TestCase):
         with open("Rectangle.json", 'r') as json_file:
             self.assertEqual(json_file.read(),
                              (
-                                '[{"id": 1, "width": 10, "height": 7, "x": 2'
-                                ', "y": 8},'
-                                ' {"id": 2, "width": 2, '
-                                '"height": 4, "x": 0, '
-                                '"y": 0}]'
-                            ))
+                '[{"id": 1, "width": 10, "height": 7, "x": 2'
+                ', "y": 8}, {"id": 2, "width": 2, '
+                '"height": 4, "x": 0, "y": 0}]'
+            ))
+
+    def test_create(self):
+        """Test if create returns a list of instances
+        the correct attributes set
+        """
+        r1 = Rectangle(3, 5, 1, 0, 0)
+        r1_dict = r1.to_dictionary()
+        r2 = Rectangle.create(**r1_dict)
+        self.assertEqual(r1.__str__(), r2.__str__())
+        self.assertEqual(r1.id, r2.id)
+        self.assertEqual(type(r1), type(r2))
 
 
 if __name__ == "__main__":

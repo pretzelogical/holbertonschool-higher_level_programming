@@ -140,17 +140,17 @@ class Rectangle(Base):
         Returns:
             int: area of the rectangle
         """
-        return self.__width * self.__height
+        return self.__width * self.__height  # type: ignore
 
     def display(self):
         """Prints the rectangle in #'s to stdout."""
         if self.__width == 0 or self.__height == 0:
             return
-        for i in range(self.__y):
+        for i in range(self.__y):  # type: ignore
             print()
-        for i in range(self.__height):
-            print(" " * self.__x, end="")
-            print("#" * self.__width)
+        for i in range(self.__height):  # type: ignore
+            print(" " * self.__x, end="")  # type: ignore
+            print("#" * self.__width)  # type: ignore
 
     def update(self, *args, **kwargs):
         """Update the Rectangle with the attribute and value
