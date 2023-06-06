@@ -152,6 +152,18 @@ class Rectangle(Base):
             print(" " * self.__x, end="")
             print("#" * self.__width)
 
+    def update(self, *args, **kwargs):
+        """Update the Rectangle with the attribute and value
+        if args is present use args else use kwargs
+        """
+        keys = ["id", "width", "height", "x", "y"]
+        if not args:
+            for key, value in kwargs.items():
+                self.__setattr__(key, value)
+        else:
+            for idx, elem in enumerate(args):
+                self.__setattr__(keys[idx], elem)
+
     def __str__(self):
         """Returns a string representation of the rectangle."""
         return (f"[Rectangle] ({self.id}) {self.x}/{self.y} "

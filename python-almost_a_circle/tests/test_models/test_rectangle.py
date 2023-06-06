@@ -81,6 +81,37 @@ class TestRectangle(unittest.TestCase):
         self.assertRaises(ValueError, Rectangle, 10, 0, 10, 20)
         self.assertRaises(ValueError, Rectangle, 10, 10, 0, -10)
 
+    def test_update_method(self):
+        """Test the update method"""
+        """Test *args"""
+        r = Rectangle(10, 10, 10, 10, 10)
+        r.update(89)
+        self.assertEqual(r.id, 89)
+        r.update(89, 2)
+        self.assertEqual(r.width, 2)
+        r.update(89, 2, 3)
+        self.assertEqual(r.height, 3)
+        r.update(89, 2, 3, 4)
+        self.assertEqual(r.x, 4)
+        r.update(89, 2, 3, 4, 5)
+        self.assertEqual(r.y, 5)
+        """Test **kwargs"""
+        r = Rectangle(10, 10, 10, 10, 10)
+        r.update(width=2)
+        self.assertEqual(r.width, 2)
+        r.update(x=4)
+        self.assertEqual(r.x, 4)
+        r.update(y=5)
+        self.assertEqual(r.y, 5)
+        r.update(89, width=2)
+        self.assertEqual(r.id, 89)
+        """Test fail cases"""
+        self.assertRaises(ValueError, r.update, 89, -2)
+        self.assertRaises(ValueError, r.update, 89, 2, -3)
+        self.assertRaises(ValueError, r.update, x=-1)
+        self.assertRaises(TypeError, r.update, 89, "str")
+        self.assertRaises(TypeError, r.update, width="the dollar")
+
     def test_str(self):
         """Test __str__ of rectangle"""
         r = Rectangle(3, 3, 9, 10, 9000)
