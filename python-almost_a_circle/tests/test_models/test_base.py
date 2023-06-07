@@ -2,6 +2,8 @@
 import unittest
 from models.base import Base
 from models.rectangle import Rectangle
+from models.square import Square
+import os
 """Unit test for class Base
 NOTE: 'type: ignore' comment is used to ignore errors in vscode
 """
@@ -64,6 +66,23 @@ class TestBase(unittest.TestCase):
                 ', "y": 8}, {"id": 2, "width": 2, '
                 '"height": 4, "x": 0, "y": 0}]'
             ))
+
+    def test_load_from_file(self):
+        """Test the load_from_file method"""
+        if os.path.exists("Base.json"):
+            os.remove("Base.json")
+
+        if os.path.exists("Rectangle.json"):
+            os.remove("Rectangle.json")
+
+        if os.path.exists("Square.json"):
+            os.remove("Square.json")
+
+        rect_output = Rectangle.load_from_file()
+        self.assertEqual(rect_output, [])
+
+        square_output = Square.load_from_file()
+        self.assertEqual(square_output, [])
 
     def test_create(self):
         """Test if create returns a list of instances
