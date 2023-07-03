@@ -10,7 +10,7 @@ class State(Base):
     """ Represents a state for a SQL database
 
     attrs:
-    __tablename__ (str): The name of the sql database
+    __tablename__ (str): The name of the sql table
     id (sqlalchemy.Integer): The state id
     name (sqlalchemy.String): The state name
     """
