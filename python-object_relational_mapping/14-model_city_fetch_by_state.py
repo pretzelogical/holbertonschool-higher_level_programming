@@ -18,6 +18,6 @@ if __name__ == '__main__':
              .all())
 
     for state, city in query:
-        print(f"{state.name}: {city.id} {city.name}")
+        print(f"{state.name}: ({city.id}) {city.name}")
 
     session.close()
