@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Updates any state where id=2 so name='New Mexico' """
+""" Deletes state objects with a name containing a """
 import sys
 from model_state import Base, State
 from sqlalchemy import create_engine
@@ -12,11 +12,11 @@ if __name__ == '__main__':
     session = Session()
 
     states = (session.query(State)
-              .filter(State.id == 2)
+              .filter(State.name.like('%a%'))
               .all())
 
     for state in states:
-        state.name = "New Mexico"  # type: ignore
+        session.delete(state)
     session.commit()
 
     session.close()
