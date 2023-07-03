@@ -11,13 +11,14 @@ if __name__ == '__main__':
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    state = (session.query(State)
-             .filter(State.name == sys.argv[4])
-             .order_by(State.id)
-             .all())
+    states = (session.query(State)
+              .filter(State.name == sys.argv[4])
+              .order_by(State.id)
+              .all())
 
-    if state:
-        print(f"{state.id}")  # type: ignore
+    if states:
+        for state in states:
+            print(state.id)  # type: ignore
     else:
         print("Not Found")
 
