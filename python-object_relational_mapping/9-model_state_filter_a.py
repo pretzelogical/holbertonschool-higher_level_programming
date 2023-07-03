@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-""" Lists first State object from sql database hbtn_0e_6_usa """
+""" Lists all State objects that contain
+the letter a from sql database hbtn_0e_6_usa
+"""
 import sys
 from model_state import Base, State
 from sqlalchemy import create_engine
@@ -11,8 +13,10 @@ if __name__ == '__main__':
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    state = session.query(State).order_by(State.id).first()
+    states = session.query(State).order_by(State.id).all()
 
-    print(f"{state.id}: {state.name}")  # type: ignore
+    for state in states:
+        if 'a' in state.name:
+            print(f"{state.id}: {state.name}")
 
     session.close()
