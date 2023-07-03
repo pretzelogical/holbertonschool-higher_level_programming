@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-""" Lists all State objects that contain
-the letter a from sql database hbtn_0e_6_usa
-"""
+""" Lists the id of a State object based on the name passed """
 import sys
 from model_state import Base, State
 from sqlalchemy import create_engine
@@ -13,12 +11,14 @@ if __name__ == '__main__':
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    states = (session.query(State)
-              .filter(State.name.like('%a%'))
-              .order_by(State.id)
-              .all())
+    state = (session.query(State)
+             .filter(State.name == sys.argv[4])
+             .order_by(State.id)
+             .all())
 
-    for state in states:
-        print(f"{state.id}: {state.name}")
+    if state:
+        print(state.id)  # type: ignore
+    else:
+        print("Not Found")
 
     session.close()
