@@ -17,7 +17,7 @@ if __name__ == '__main__':
              .all())
 
     if state:
-        print(state.id)  # type: ignore
+        print(f"{state.id}")  # type: ignore
     else:
         print("Not Found")
 
