@@ -13,10 +13,10 @@ if __name__ == '__main__':
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    states = session.query(State).order_by(State.id).all()
+    states = (session.query(State).filter(State.name.like('%a%'))
+              .order_by(State.id).all())
 
     for state in states:
-        if 'a' in state.name:
-            print(f"{state.id}: {state.name}")
+        print(f"{state.id}: {state.name}")
 
     session.close()
