@@ -1,7 +1,6 @@
 #!/usr/bin/node
 const request = require('request');
 
-
 function removeNoTasks (completed) {
   const noTasks = [];
   for (const user in completed) {
