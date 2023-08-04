@@ -3,7 +3,7 @@ const request = require('request');
 
 const completed = {};
 let uid;
-request('https://jsonplaceholder.typicode.com/todos/', (error, response, body) => {
+request(process.argv[2], (error, response, body) => {
   if (error) {
     console.error(error);
   }

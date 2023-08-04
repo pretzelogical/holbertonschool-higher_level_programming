@@ -2,7 +2,7 @@
 const request = require('request');
 
 let wedgeAntilles = 0;
-request('https://swapi-api.hbtn.io/api/films/', (error, response, body) => {
+request(process.argv[2], (error, response, body) => {
   if (error) {
     console.error(error);
   }
