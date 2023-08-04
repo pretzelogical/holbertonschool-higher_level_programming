@@ -1,13 +1,28 @@
 #!/usr/bin/node
 const request = require('request');
 
-const completed = {};
-let uid;
+
+function removeNoTasks (completed) {
+  const noTasks = [];
+  for (const user in completed) {
+    if (completed[user] === 0) {
+      noTasks.push(user);
+    }
+  }
+  noTasks.forEach((user) => {
+    delete completed[user];
+  });
+}
+
 request(process.argv[2], (error, response, body) => {
   if (error) {
     console.error(error);
   }
-  JSON.parse(body).forEach((task) => {
+
+  let uid;
+  const completed = {};
+  const tasks = JSON.parse(body);
+  tasks.forEach((task) => {
     uid = task.userId.toString();
     if (!Object.keys(completed).includes(uid)) {
       completed[uid] = 0;
@@ -16,5 +31,6 @@ request(process.argv[2], (error, response, body) => {
       completed[uid] += 1;
     }
   });
+  removeNoTasks(completed);
   console.log(completed);
 });
