@@ -7,7 +7,8 @@ request(process.argv[2], (error, response, body) => {
     console.error(error);
   }
   JSON.parse(body).results.forEach((movie) => {
-    if (movie.characters.includes('https://swapi-api.hbtn.io/api/people/18/')) {
+    if (movie.characters.includes('https://swapi-api.hbtn.io/api/people/18/') ||
+      movie.characters.includes('http://swapi.co/api/people/18/')) {
       wedgeAntilles++;
     }
   });
